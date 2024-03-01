@@ -20,7 +20,7 @@ public class RootConfig {
     private final DatabaseProperties databaseProperties;
 
     @Bean
-    public DataSource dataSource() {
+    public DataSource getDataSource() {
         BasicDataSource basicDataSource = new BasicDataSource();
         basicDataSource.setDriverClassName(databaseProperties.getDriverClassName());
         basicDataSource.setUrl(databaseProperties.getUrl());
