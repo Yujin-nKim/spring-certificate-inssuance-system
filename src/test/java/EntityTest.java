@@ -49,9 +49,12 @@ public class EntityTest {
     @Test
     @DisplayName("BirthDeathReportResident Entity test")
     void testBirthDeathReportResident() {
-        BirthDeathReportResident birthDeathReportResident = entityManager.find(BirthDeathReportResident.class, new BirthDeathReportResident.PrimaryKey(7, "출생"));
+        Resident resident = entityManager.find(Resident.class, 4);
+        BirthDeathReportResident birthDeathReportResident = entityManager.find(BirthDeathReportResident.class, new BirthDeathReportResident.PrimaryKey("출생", resident));
 
-
-        // insert into birth_death_report_resident values (7, '출생', 4, '20120317', '부', null, 'nam@nhnad.co.kr', '010-1234-5678');
+        assertThat(birthDeathReportResident.getPrimayKey().getReportResidentSerialNumber().getName()).isEqualTo("남기준");
+        assertThat(birthDeathReportResident.getPrimayKey().getBirthDeathTypeCode()).isEqualTo("출생");
+        assertThat(birthDeathReportResident.getResident().getName()).isEqualTo("남기석");
+        assertThat(birthDeathReportResident.getBirthDeathReportDate().getYear()).isEqualTo(2012);
     }
 }

@@ -38,6 +38,7 @@ public class BirthDeathReportResident { // 출생사망신고주민
     @AllArgsConstructor
     @EqualsAndHashCode
     @Embeddable
+    @Getter
     public static class PrimaryKey implements Serializable {
 
         @Column(name="birth_death_type_code", nullable = false)
