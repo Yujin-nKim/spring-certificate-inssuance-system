@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.nhnacademy.springcertificateinssuancesystem.config.RootConfig;
 import com.nhnacademy.springcertificateinssuancesystem.config.WebConfig;
 import com.nhnacademy.springcertificateinssuancesystem.entity.BirthDeathReportResident;
+import com.nhnacademy.springcertificateinssuancesystem.entity.FamilyRelationship;
 import com.nhnacademy.springcertificateinssuancesystem.entity.Resident;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
@@ -48,7 +49,7 @@ public class EntityTest {
 
     @Test
     @DisplayName("BirthDeathReportResident Entity test")
-    void testBirthDeathReportResident() {
+    void testBirthDeathReportResidentEntity() {
         Resident resident = entityManager.find(Resident.class, 4);
         BirthDeathReportResident birthDeathReportResident = entityManager.find(BirthDeathReportResident.class, new BirthDeathReportResident.PrimaryKey("출생", resident));
 
@@ -56,5 +57,18 @@ public class EntityTest {
         assertThat(birthDeathReportResident.getPrimayKey().getBirthDeathTypeCode()).isEqualTo("출생");
         assertThat(birthDeathReportResident.getResident().getName()).isEqualTo("남기석");
         assertThat(birthDeathReportResident.getBirthDeathReportDate().getYear()).isEqualTo(2012);
+    }
+
+    @Test
+    @DisplayName("FamilyRelationship Entity test")
+    void testFamilyRelationshipEntity() {
+        Resident resident1 = entityManager.find(Resident.class, 1);
+        Resident resident2 = entityManager.find(Resident.class, 2);
+
+        FamilyRelationship familyRelationship = entityManager.find(FamilyRelationship.class, new FamilyRelationship.PrimaryKey(resident1, resident2));
+
+        assertThat(familyRelationship.getPrimayKey().getBaseResidentSerialNumber().getName()).isEqualTo("남길동");
+        assertThat(familyRelationship.getPrimayKey().getFamilyResidentSerialNumber().getName()).isEqualTo("남석환");
+        assertThat(familyRelationship.getFamilyRelationshipCode()).isEqualTo("자녀");
     }
 }
