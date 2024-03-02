@@ -45,4 +45,13 @@ public class EntityTest {
         assertThat(resident.getDeathPlaceCode()).isEqualTo("주택");
         assertThat(resident.getDeathPlaceAddress()).isEqualTo("강원도 고성군 금강산로 290번길");
     }
+
+    @Test
+    @DisplayName("BirthDeathReportResident Entity test")
+    void testBirthDeathReportResident() {
+        BirthDeathReportResident birthDeathReportResident = entityManager.find(BirthDeathReportResident.class, new BirthDeathReportResident.PrimaryKey(7, "출생"));
+
+
+        // insert into birth_death_report_resident values (7, '출생', 4, '20120317', '부', null, 'nam@nhnad.co.kr', '010-1234-5678');
+    }
 }

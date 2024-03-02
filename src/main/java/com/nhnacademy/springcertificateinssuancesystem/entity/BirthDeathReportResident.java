@@ -16,10 +16,10 @@ public class BirthDeathReportResident { // 출생사망신고주민
     private PrimaryKey primayKey;
 
     @ManyToOne
-    @JoinColumn(name="report_resident_serial_number")
+    @JoinColumn(name="resident_serial_number", nullable = false)
     private Resident resident; // 주민일련번호
 
-    @Column(name="birth_death_report_date")
+    @Column(name="birth_death_report_date", nullable = false)
     private LocalDate birthDeathReportDate; // 출생사망신고일자
 
     @Column(name="birth_report_qualifications_code")
@@ -31,7 +31,7 @@ public class BirthDeathReportResident { // 출생사망신고주민
     @Column(name="email_address")
     private String emailAddress; // 이메일 주소
 
-    @Column(name="phone_number")
+    @Column(name="phone_number", nullable = false)
     private String phoneNumber; // 전화번호
 
     @NoArgsConstructor
@@ -39,10 +39,13 @@ public class BirthDeathReportResident { // 출생사망신고주민
     @EqualsAndHashCode
     @Embeddable
     public static class PrimaryKey implements Serializable {
-        @Column(name="resident_serial_number")
-        private int residentSerialNumber; //
 
-        @Column(name="birth_death_type_code")
-        private String birthDeathTypeCode;
+        @Column(name="birth_death_type_code", nullable = false)
+        private String birthDeathTypeCode; // 출생사망유형코드
+
+        @ManyToOne
+        @JoinColumn(name="report_resident_serial_number", nullable = false)
+        private Resident reportResidentSerialNumber; // 신고주민일련번호
+
     }
 }
