@@ -82,4 +82,5 @@ public class EntityTest {
 
         assertThat(household.getHouseholdResidentSerialNumber().getName()).isEqualTo(resident.getName());
     }
+
 }
