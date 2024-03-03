@@ -1,21 +1,22 @@
 package com.nhnacademy.springcertificateinssuancesystem.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.nhnacademy.springcertificateinssuancesystem.domain.ResidentRegisterRequest;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @Entity
 @Table(name="resident")
+@Builder
 public class Resident { // 주민
     @Id
     @Column(name="resident_serial_number", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int residentSerialNumber; // 주민일련번호
 
     @Column(nullable = false)
@@ -45,5 +46,20 @@ public class Resident { // 주민
     @Column(name="death_place_address")
     private String deathPlaceAddress; // 사망장소주소
 
+    public static Resident toEntity(ResidentRegisterRequest request) {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        LocalDateTime dateTime = LocalDateTime.parse(request.getBirthDate(), formatter);
+
+        return Resident.builder()
+                .residentSerialNumber(request.getResidentSerialNumber())
+                .name(request.getName())
+                .residentRegistrationNumber(request.getResidentRegistrationNumber())
+                .genderCode(request.getGenderCode())
+                .birthDate(dateTime)
+                .birthPlaceCode(request.getBirthPlaceCode())
+                .registrationBaseAddress(request.getRegistrationBaseAddress())
+                .build();
+    }
 
 }

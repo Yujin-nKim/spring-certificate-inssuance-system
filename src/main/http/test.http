@@ -13,7 +13,7 @@ Content-Type: application/json
 }
 
 ###주민 API - 수정
-PUT http://localhost:8080/residents/1
+PUT http://localhost:8080/residents/8
 Content-Type: application/json
 
 {
