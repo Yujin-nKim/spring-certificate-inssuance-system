@@ -5,8 +5,6 @@ import com.nhnacademy.springcertificateinssuancesystem.repository.ResidentReposi
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service("residentService")
 public class ResidentServiceImpl implements ResidentService{
 
@@ -14,8 +12,8 @@ public class ResidentServiceImpl implements ResidentService{
     private ResidentRepository residentRepository;
 
     @Override
-    public Optional<Resident> getResident(int residentSerialNumber) {
-        return Optional.of(residentRepository.findById(residentSerialNumber).get());
+    public Resident getResident(int residentSerialNumber) {
+        return residentRepository.findById(residentSerialNumber).orElse(null);
     }
 
     @Override
@@ -25,15 +23,6 @@ public class ResidentServiceImpl implements ResidentService{
 
     @Override
     public void modifyResident(Resident resident) {
-        Resident updatedResident = residentRepository.findById(resident.getResidentSerialNumber())
-                .orElseThrow(() -> new RuntimeException("Resident not found with id : " + resident.getResidentSerialNumber()));
-
-        updatedResident.setName(resident.getName());
-        updatedResident.setResidentRegistrationNumber(resident.getResidentRegistrationNumber());
-        updatedResident.setGenderCode(resident.getGenderCode());
-        updatedResident.setRegistrationBaseAddress(resident.getRegistrationBaseAddress());
-        updatedResident.setDeathDate(resident.getDeathDate());
-        updatedResident.setDeathPlaceCode(resident.getDeathPlaceCode());
-        updatedResident.setDeathPlaceAddress(resident.getDeathPlaceAddress());
+        residentRepository.save(resident);
     }
 }
