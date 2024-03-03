@@ -45,21 +45,4 @@ public class Resident { // 주민
 
     @Column(name="death_place_address")
     private String deathPlaceAddress; // 사망장소주소
-
-    public static Resident toEntity(ResidentRegisterRequest request) {
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
-        LocalDateTime dateTime = LocalDateTime.parse(request.getBirthDate(), formatter);
-
-        return Resident.builder()
-                .residentSerialNumber(request.getResidentSerialNumber())
-                .name(request.getName())
-                .residentRegistrationNumber(request.getResidentRegistrationNumber())
-                .genderCode(request.getGenderCode())
-                .birthDate(dateTime)
-                .birthPlaceCode(request.getBirthPlaceCode())
-                .registrationBaseAddress(request.getRegistrationBaseAddress())
-                .build();
-    }
-
 }

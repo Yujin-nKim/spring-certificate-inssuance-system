@@ -1,5 +1,6 @@
 package com.nhnacademy.springcertificateinssuancesystem.controller;
 
+import com.nhnacademy.springcertificateinssuancesystem.domain.ResidentModifyRequest;
 import com.nhnacademy.springcertificateinssuancesystem.domain.ResidentRegisterRequest;
 import com.nhnacademy.springcertificateinssuancesystem.entity.Resident;
 import com.nhnacademy.springcertificateinssuancesystem.service.ResidentService;
@@ -16,12 +17,12 @@ public class ResidentController {
 
     @PostMapping
     public void createResident(@RequestBody ResidentRegisterRequest residentRegisterRequest) {
-        Resident resident = Resident.toEntity(residentRegisterRequest);
+        Resident resident = residentRegisterRequest.toEntity();
         residentService.createResident(resident);
     }
 
-    @PutMapping
-    public void modifyResident() {
-
-    }
+//    @PutMapping
+//    public void modifyResident(@RequestBody ResidentModifyRequest request) {
+//        Resident
+//    }
 }
