@@ -6,6 +6,7 @@ import com.nhnacademy.springcertificateinssuancesystem.config.RootConfig;
 import com.nhnacademy.springcertificateinssuancesystem.config.WebConfig;
 import com.nhnacademy.springcertificateinssuancesystem.entity.BirthDeathReportResident;
 import com.nhnacademy.springcertificateinssuancesystem.entity.FamilyRelationship;
+import com.nhnacademy.springcertificateinssuancesystem.entity.Household;
 import com.nhnacademy.springcertificateinssuancesystem.entity.Resident;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
@@ -70,5 +71,15 @@ public class EntityTest {
         assertThat(familyRelationship.getPrimayKey().getBaseResidentSerialNumber().getName()).isEqualTo("남길동");
         assertThat(familyRelationship.getPrimayKey().getFamilyResidentSerialNumber().getName()).isEqualTo("남석환");
         assertThat(familyRelationship.getFamilyRelationshipCode()).isEqualTo("자녀");
+    }
+
+    @Test
+    @DisplayName("Household Entity test")
+    void testHouseholdEntity() {
+        Resident resident = entityManager.find(Resident.class, 4);
+
+        Household household = entityManager.find(Household.class, 1);
+
+        assertThat(household.getHouseholdResidentSerialNumber().getName()).isEqualTo(resident.getName());
     }
 }
