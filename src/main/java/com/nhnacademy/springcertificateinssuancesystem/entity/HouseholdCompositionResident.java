@@ -15,13 +15,13 @@ public class HouseholdCompositionResident { // 세대구성주민
     @EmbeddedId
     private PrimaryKey primayKey;
 
-    @Column(name="report_date")
+    @Column(name="report_date", nullable = false)
     private LocalDate reportDate; // 신고일자
 
-    @Column(name="household_relationship_code")
+    @Column(name="household_relationship_code", nullable = false)
     private String householdRelationshipCode; // 세대주관계코드
 
-    @Column(name="household_composition_change_reason_code")
+    @Column(name="household_composition_change_reason_code", nullable = false)
     private String householdCompositionChangeReasonCode; // 세대구성변동사유코드
 
     @NoArgsConstructor
@@ -31,11 +31,11 @@ public class HouseholdCompositionResident { // 세대구성주민
     @Getter
     public static class PrimaryKey implements Serializable {
         @ManyToOne
-        @JoinColumn(name="household_serial_number")
+        @JoinColumn(name="household_serial_number", nullable = false)
         private Household householdSerialNumber; // 세대일련번호
 
         @OneToOne
-        @JoinColumn(name="resident_serial_number")
+        @JoinColumn(name="resident_serial_number", nullable = false)
         private Resident residentSerialNumber; // 주민일련번호
     }
 }
