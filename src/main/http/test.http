@@ -34,15 +34,3 @@ Content-Type: application/json
   "familySerialNumber": 4,
   "relationShip": "father"
 }
-
-###가족관계 API - 수정
-PUT http://localhost:8080/residents/8/relationship/4
-Content-Type: application/json
-
-{
-  "relationShip": "mother"
-}
-
-###가족관계 API - 삭제
-DELETE http://localhost:8080/residents/8/relationship/4
-Content-Type: application/json

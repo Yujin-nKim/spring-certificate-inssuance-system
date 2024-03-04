@@ -6,10 +6,12 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @Entity
 @Table(name="family_relationship")
+@Builder
 public class FamilyRelationship { // 가족관계
     @EmbeddedId
     private PrimaryKey primayKey;
